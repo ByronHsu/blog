@@ -1,0 +1,14 @@
+.collection .collection-item {
+    background-color: #fff;
+    line-height: 1.2em;
+    padding: 10px 20px;
+    margin: 0;
+    border: 1px solid #dddbd9;
+}
+.collection a.collection-item {
+    display: block;
+    transition: .25s;
+    color: rgb(239, 147, 151);
+    font-size: 1.4em;
+
+}

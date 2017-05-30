@@ -7,15 +7,18 @@ import {
 } from 'react-router-dom';
 import 'babel-polyfill';
 import fetch from 'isomorphic-fetch';
+import '../css/Article.css';
+import ReactHtmlParser from 'react-html-parser';
 
 class Article extends Component {
   constructor() {
     super();
     this.state = {
-      data:' ',
+      data: null, 
     };
   }
   componentWillMount() {
+    console.log(this.props.match.params);
     fetch(`/api/get-data/${this.props.match.params.articleid}`)
             .then(response => response.json())
             .then((article) => {
@@ -25,14 +28,22 @@ class Article extends Component {
               console.log(error);
             });
   }
-  componentDidUpdate(){
-    document.getElementById(this.props.match.params.articleid).innerHTML=this.state.data.content;
-  }
+  
+  render() {
+    const { data } = this.state;
 
-  render() { 
+    if (!data) {
+      return <div>Loading...</div>;
+    } 
+
+    console.log(this.state.data); 
+    const html = this.state.data.content.replace(/\r?\n/g, '<br />'); 
     return (
-        <div id = {this.props.match.params.articleid}>
-        </div>
+        <div id = {this.props.match.params.articleid} className = "article" > 
+            <div className = "title">{this.state.data.title}</div>
+            <div className = "time">{this.state.data.time}</div>
+            <div className = "content"> { ReactHtmlParser(html) } </div> 
+        </div>      
     );
   } 
 }

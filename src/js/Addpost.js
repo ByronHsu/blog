@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import 'babel-polyfill';
 import fetch from 'isomorphic-fetch';
-import '../css/CKEditor.css';
+import '../css/Addpost.css';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,15 +9,13 @@ import {
   Switch, 
 } from 'react-router-dom';
 
-const CKE = require('react-ckeditor-wrapper');
 
-class CKEDITOR extends Component {
+class Addpost extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      title: ' ',
       content: ' ',
-      topic: ' ',
-
     };
   }
   getNowTime = () =>{
@@ -36,15 +34,12 @@ class CKEDITOR extends Component {
     }
     return `${t[0]}/${t[1]}/${t[2]} ${t[3]}:${t[4]}:${t[5]}`;
   }
-  updateContent(value) {
-    this.setState({ content: value });
-  }
   submitOnClick = () => {
-    const article = {
-      topic: this.state.topic,
+    const article = { 
+      title: this.state.title,
       content: this.state.content,
       time: this.getNowTime(),
-    };
+    }; 
     console.log(article);
     fetch('/api/insert', {
       method: 'post',
@@ -55,26 +50,26 @@ class CKEDITOR extends Component {
       body: JSON.stringify(article),
     });
   }
-  handleChange = (e) => {
-    this.setState({ topic: e.target.value });
+  handletitleChange = (e) => {
+    this.setState({ title: e.target.value });
+  }
+  handleContentChange = (e) => {
+    this.setState({ content: e.target.value });
   }
   render() {
     return (
       <div>   
-        <div className="input-field">
+        <div className="input-field" > 
           <input
             placeholder="Placeholder" type="text" 
-            className="validate" onChange={this.handleChange}
-            value={this.state.topic}
+            className="validate" onChange={this.handletitleChange}
+            value={this.state.title}
           />
-          <label className="active">Topic</label>
-        </div>
-        <CKE
-          value={this.state.content}
-          onChange={this.updateContent.bind(this)}
-          config={{ uiColor: '#ee6e73' }}  
-        />
-        <Link to="/catalog">
+          <label className="active">TITLE</label> 
+        </div>            
+        <textarea id="textarea1" className="materialize-textarea" 
+              value={this.state.content} onChange={this.handleContentChange}></textarea>
+        <Link to="/">
           <button className="btn waves-effect waves-red Submit" type="submit" name="action" onClick={this.submitOnClick}>Submit
             <i className="material-icons right">send</i>
           </button>
@@ -84,4 +79,4 @@ class CKEDITOR extends Component {
   }
 }
 
-export default CKEDITOR;
+export default Addpost;

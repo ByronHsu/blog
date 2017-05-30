@@ -1,0 +1,16 @@
+.article{
+    width:80%;
+    margin-top: 3em;
+    margin-right:10%;
+    margin-left:10%;
+}
+.title {
+    font-size: 4em;
+    color: #ff8b9f;
+}
+.time {
+    color: #b7b6b6;
+}
+.content {
+    font-size: 1.5em;
+}

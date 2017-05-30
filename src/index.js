@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import NavBar from './js/NavBar';
+import Control from './js/Control';
 import './css/index.css';
 
-ReactDOM.render(<NavBar />, document.getElementById('main'));
+ReactDOM.render(<Control />, document.getElementById('main'));
 
+ 
