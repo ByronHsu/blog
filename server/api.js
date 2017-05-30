@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-
 if (process.env.NODE_ENV !== 'test') {
   mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/blog');
 }
+
 
 var Schema = mongoose.Schema;
 
