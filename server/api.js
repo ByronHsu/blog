@@ -2,11 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const mongoose = require('mongoose');
-mongoose.connect('localhost:27017/test');
 var Schema = mongoose.Schema;
+
+mongoose.Promise = global.Promise;
+if (process.env.NODE_ENV !== 'test') {
+  mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/blog');
+}
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
+
 
 var userDataSchema = new Schema({
   title: String,  
