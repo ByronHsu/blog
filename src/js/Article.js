@@ -26,18 +26,15 @@ class Article extends Component {
             });
   }
   componentDidUpdate(){
-    console.log(document.getElementById(this.props.match.params.articleid));
-    console.log(this.state.data);
     document.getElementById(this.props.match.params.articleid).innerHTML=this.state.data.content;
   }
 
-  render() {
-    console.log(this.state.data.content);
+  render() { 
     return (
         <div id = {this.props.match.params.articleid}>
         </div>
     );
-  }
+  } 
 }
 
 export default Article;

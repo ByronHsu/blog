@@ -6,7 +6,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import 'babel-polyfill';
-import Article from './article';
+import Article from './Article';
 import fetch from 'isomorphic-fetch';
 
 
@@ -36,7 +36,7 @@ class catalog extends Component {
           {
                     this.state.data.map(p => (
                       <li>
-                        <Link to={`/catalog/${p._id}`}>{p._id}</Link>
+                        <Link to={`/catalog/${p._id}`}>{p.topic}</Link>
                       </li>
                     ))
                 }
@@ -50,7 +50,7 @@ const Catalog = () => (
   <div>
     <Switch>
       <Route exact path="/catalog" component={catalog} />
-      <Route path="/catalog/:articleid" component={(props) => (<Article {...props} />) } />
+      <Route path="/catalog/:articleid" component={props => (<Article {...props} />)} />
     </Switch>
   </div>
 );

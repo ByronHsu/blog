@@ -9,7 +9,9 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 var userDataSchema = new Schema({
-  content: String,
+  topic: String,
+  content: String,  
+  time: String,
 }, {collection: 'user-data'});
 
 var UserData = mongoose.model('UserData', userDataSchema);
@@ -26,7 +28,6 @@ router.get('/get-data', function(req, res, next) {
 });
 
 router.get('/get-data/:article_id', function(req, res, next) {
-  console.log(req.params.article_id);
   const id = req.params.article_id
   UserData.findById(id, function(err, doc) {
     if (err) {
@@ -37,11 +38,7 @@ router.get('/get-data/:article_id', function(req, res, next) {
 });
 
 router.post('/insert', function(req, res, next) {
-  console.log(req.body);
-  var item = {
-    content: req.body.content
-  };
-
+  var item = req.body
   var data = new UserData(item);
   data.save();
   //res.redirect('/');
