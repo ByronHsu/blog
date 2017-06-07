@@ -37,13 +37,13 @@ class home extends Component {
     return (
       <div>
         <div className="carousel">
-          <a className="carousel-item" href="#one!"><img src="img/IMG_8735.jpg" /></a>
-          <a className="carousel-item" href="#two!"><img src="img/IMG_8736.jpg" /></a>
-          <a className="carousel-item" href="#three!"><img src="img/IMG_8737.jpg" /></a>
-          <a className="carousel-item" href="#four!"><img src="img/IMG_8742.jpg" /></a>
-          <a className="carousel-item" href="#five!"><img src="img/IMG_8749.jpg" /></a>
+          <a className="carousel-item" href="#one!"><img src="img/2.jpg" /></a>
+          <a className="carousel-item" href="#two!"><img src="img/7.jpg" /></a>
+          <a className="carousel-item" href="#three!"><img src="img/6.jpg" /></a>
+          <a className="carousel-item" href="#four!"><img src="img/4.jpg" /></a>
+          <a className="carousel-item" href="#five!"><img src="img/5.jpg" /></a>
         </div>
-
+  
         <div className="collection">
           {
                     this.state.data.map(p => (

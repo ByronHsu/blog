@@ -58,5 +58,5 @@ router.post('/delete', function(req, res, next) {
   UserData.findByIdAndRemove(id).exec();
   res.redirect('/');
 });
-
+ 
 module.exports = router;
